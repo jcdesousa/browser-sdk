@@ -5,6 +5,7 @@ export { trackViewportResize, trackVisualViewportResize } from './trackViewportR
 export { trackMediaInteraction } from './trackMediaInteraction'
 export { trackStyleSheet } from './trackStyleSheet'
 export { trackFocus } from './trackFocus'
+export { trackComponentRender } from './trackComponentRender'
 export { trackFrustration } from './trackFrustration'
 export { trackViewEnd } from './trackViewEnd'
 export type { InputCallback } from './trackInput'

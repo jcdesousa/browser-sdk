@@ -98,6 +98,7 @@ export type BrowserIncrementalData =
   | StyleSheetRuleData
   | ViewportResizeData
   | PointerInteractionData
+  | ComponentRenderData
 /**
  * Browser-specific. Schema of a MutationData.
  */
@@ -243,6 +244,13 @@ export type PointerInteractionData = {
    */
   readonly source: 9
 } & PointerInteraction
+
+export type ComponentRenderData = {
+  /**
+   * The source of this type of incremental data.
+   */
+  readonly source: 10
+} & ComponentRenderInteraction
 /**
  * Schema of a Record which contains the screen properties.
  */
@@ -333,6 +341,20 @@ export type FrustrationRecord = SlotSupportedCommonRecordSchema & {
     recordIds: number[]
   }
 }
+
+  export type ComponentRenderRecord = SlotSupportedCommonRecordSchema & {
+    /**
+     * The type of this Record.
+     */
+    readonly type: 10
+    data: {
+      /**
+       * The name of the component that was rendered.
+       */
+      readonly id: string
+      readonly rect: any
+    }
+  }
 
 /**
  * Schema of a Session Replay Segment context.
@@ -732,3 +754,15 @@ export interface PointerInteraction {
    */
   y: number
 }
+
+export type ComponentRenderInteraction =
+  | {
+      /**
+       * The type of MouseInteraction: 0=mouseup, 1=mousedown, 2=click, 3=contextmenu, 4=dblclick, 7=touchstart, 9=touchend
+       */
+      readonly type: any
+      /**
+       * Id for the target node for this MouseInteraction.
+       */
+      id: number
+    }
